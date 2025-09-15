@@ -1,0 +1,37 @@
+80.Remove the duplicates form sorted array II
+
+Explanation 
+it will check whether the count exceeds 2 and it will remove that element by left shift and make the count to 2 if it exceeds 3 and reduce the i-- to remain at the same position where each time the loop increases i++ so it is the reason to i-- after the rotation it should be remain at same position
+
+
+
+
+
+int removeDuplicates(int* nums, int numsSize) {
+    int i = 0;
+    int c = 1;
+    int n = numsSize;
+
+    while (i < n - 1) {
+        if (nums[i] == nums[i + 1]) {
+            c++;
+        } else {
+            c = 1; 
+        }
+
+        if (c > 2) { 
+            int j = i + 1;
+            while (j < n - 1) {
+                nums[j] = nums[j + 1];
+                j++;
+            }
+            n--;      
+            c--;   
+            i--;   
+        }
+        i++;
+    }
+
+    return n;
+
+}
