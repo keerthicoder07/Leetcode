@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+char* longestCommonPrefix(char** strs, int strsSize) {
+    if (strsSize == 0) return "";
+
+    if (strsSize == 1) {
+        char *res = (char*)malloc(strlen(strs[0]) + 1);
+        strcpy(res, strs[0]);
+        return res;
+    }
+
+    int mi = 9999, ma = 0, j = 0;
+    for (int i = 0; i < strsSize; i++) { 
+        int n = strlen(strs[i]);
+        if (mi > n) {
+            mi = n;
+            j = i;
+        }
+        if (ma < n) ma = n;
+    }
+    if (ma == 0) ma = 1;
+
+    // allocate enough space (+1 for '\0')
+    char *str = (char*)malloc((ma + 1) * sizeof(char));
+    int k = 0;
+
+    while (strs[j][k] != '\0') {
+        int match = 1;
+        for (int i = 0; i < strsSize; i++) {
+            if (strs[j][k] != strs[i][k]) {
+                match = 0;
+                break;
+            }
+        }
+        if (match) {
+            str[k] = strs[j][k];
+            k++;
+        } else break;
+    }
+
+    str[k] = '\0';  // always terminate
+    return str;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+Handle simple cases
+
+If the list of strings is empty → return "".
+
+If only one string is present → return it as the prefix.
+
+Find the shortest string length
+
+Iterate through all strings.
+
+Track the minimum length (mi) and maximum length (ma).
+
+Store the index j of the shortest string → because the longest common prefix cannot be longer than the shortest string.
+
+Prepare result storage
+
+Allocate memory for the result string (str) with size = ma + 1 (to include \0).
+
+Compare characters position by position
+
+Start with index k = 0.
+
+For each character at position k of the shortest string, check all other strings:
+
+If all strings have the same character at k, add it to result.
+
+If any mismatch occurs → stop.
+
+Terminate and return result
+
+Append \0 to properly end the prefix string.
+
+Return the constructed prefix.
