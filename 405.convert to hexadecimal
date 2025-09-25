@@ -1,0 +1,58 @@
+class Solution {
+    public String toHex(int num) {
+        if(num==0)
+        return "0";
+        String res="";
+        if(num>0)
+        {
+            while(num>0)
+            {
+              if(num%16<10)
+            {
+                res=Integer.toString(num%16)+res;
+            }
+            else if((num%16)==10)
+            {
+                res="a"+res;
+            }
+            else if((num%16)==11)
+            {
+                res="b"+res;
+            }
+            else if((num%16)==12)
+            {
+                res="c"+res;
+            }
+            else if((num%16)==13)
+            {
+                res="d"+res;
+            }
+            else if((num%16)==14)
+            {
+                res="e"+res;
+            }
+            else
+            {
+                 res="f"+res;
+            }
+
+            
+            num/=16;
+            }
+            return res;
+        }
+        else
+        {
+           long val = num & 0xFFFFFFFFL; // convert to unsigned 32-bit
+            StringBuilder sb = new StringBuilder();
+            char[] hexChars = "0123456789abcdef".toCharArray();
+            
+            while (val > 0) {
+                sb.append(hexChars[(int)(val % 16)]);
+                val /= 16;
+            }
+            return sb.reverse().toString();
+        }
+        
+    }
+}
