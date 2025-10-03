@@ -22,3 +22,31 @@ class Solution {
         return s;
     }
 }
+
+
+
+#using stringbuilder
+class Solution {
+    public String clearDigits(String s) {
+        StringBuilder s1=new StringBuilder(s);
+        for(int i=0;i<s1.length();i++)
+        {
+            if(s1.charAt(i)>=48 && s1.charAt(i)<=57)
+            {
+                for(int j=i;j>=0;j--)
+                {
+                    if(s1.charAt(j)>=97 && s1.charAt(j)<=122)
+                    {
+                            s1.deleteCharAt(i);
+                            s1.deleteCharAt(j);
+                            i=0;
+                            break;
+                    }
+                }
+            }
+            
+        }
+       
+        return s1.toString();
+    }
+}
