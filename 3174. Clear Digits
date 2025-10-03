@@ -5,7 +5,7 @@ class Solution {
         {
             if(str[i]>=48 && str[i]<=57)
             {
-                for(int j=i;j>=0;j--)
+                for(int j=i-1;j>=0;j--)
                 {
                     if(str[j]>=97 && str[j]<=122)
                     {
@@ -33,7 +33,7 @@ class Solution {
         {
             if(s1.charAt(i)>=48 && s1.charAt(i)<=57)
             {
-                for(int j=i;j>=0;j--)
+                for(int j=i-1;j>=0;j--)
                 {
                     if(s1.charAt(j)>=97 && s1.charAt(j)<=122)
                     {
