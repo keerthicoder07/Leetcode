@@ -1,0 +1,21 @@
+class Solution {
+    public int minimumChairs(String s) {
+        int c=0;
+        int m=0;
+        for(int i=0;i<s.length();i++)
+        {
+            if(s.charAt(i)=='E')
+            c++;
+            if(c>m)
+            m=c;
+            if(s.charAt(i)=='L')
+            c--;
+
+
+        }
+        return m;
+    }
+}
+
+
+# read the hint for clue in leetcode
