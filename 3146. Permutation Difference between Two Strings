@@ -1,3 +1,5 @@
+
+O(n^2)
 class Solution {
     public int findPermutationDifference(String s, String t) {
         int sum=0;
@@ -10,6 +12,32 @@ class Solution {
                    sum+=Math.abs(i-j);
                 }
             }
+        }
+        return sum;
+    }
+}
+
+
+
+O(n.m)
+class Solution {
+    public int findPermutationDifference(String s, String t) {
+        int sum=0;
+        int i=0;
+        int j=0;
+        while(i<s.length() && j<t.length())
+          {
+                if(s.charAt(i)==t.charAt(j))
+                {
+                   sum+=Math.abs(i-j);
+                   i++;
+                   j=0;
+                }
+                else
+                {
+                    j++;
+                }
+
         }
         return sum;
     }
