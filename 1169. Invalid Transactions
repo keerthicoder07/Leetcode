@@ -1,0 +1,34 @@
+class Solution {
+    public List<String> invalidTransactions(String[] transactions) {
+
+        ArrayList<String> res= new ArrayList<>();
+        ArrayList<String[]> list=new ArrayList<>();
+        String name="";
+        for(String i:transactions)
+        {
+            list.add(i.split(","));
+        }
+        for(int j=0;j<list.size();j++)
+        {
+            if(Integer.parseInt(list.get(j)[2])>1000)
+            {
+            res.add(transactions[j]);
+            }
+            else
+            {
+                name=list.get(j)[0];
+                for(int l=0;l<list.size();l++)
+                {
+                        if(l!=j && name.equals(list.get(l)[0]) && Math.abs(Integer.parseInt(list.get(j)[1])-Integer.parseInt(list.get(l)[1]))<=60 && !list.get(j)[3].equals(list.get(l)[3]))
+                        {
+                            res.add(transactions[j]);
+                            break;
+                            
+                        }
+                }
+            }
+        }
+        return res;
+        
+    }
+}
