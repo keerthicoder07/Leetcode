@@ -1,0 +1,52 @@
+class Solution {
+    public int[] numSmallerByFrequency(String[] queries, String[] words) {
+        ArrayList<Integer> list=new ArrayList<>();
+        ArrayList<Integer> res=new ArrayList<>();
+        for(String i:words)
+        {
+            int n=small(i);
+            list.add(n);
+        }
+        for(String j:queries)
+        {
+            int r=small(j);
+            int sum=0;
+            for(int k=0;k<list.size();k++)
+            {
+                if(r<list.get(k))
+                {
+                    sum++;
+                }
+            }
+            res.add(sum);
+
+        }
+        int arr[]=res.stream().mapToInt(Integer::intValue).toArray();
+        return arr;
+
+        
+        
+    }
+    public int small(String s)
+    {
+        
+        char[] str=s.toCharArray();
+        char sm=str[0];
+        for(int j=1;j<str.length;j++)
+        {
+            if(sm>str[j])
+            {
+                sm=str[j];
+            }
+        }
+        int sum=0;
+        for(int k=0;k<str.length;k++)
+        {
+            if(sm==str[k])
+            {
+                  sum++;
+            }
+        }
+        return sum;
+    }
+}
