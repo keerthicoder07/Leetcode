@@ -1,0 +1,22 @@
+class Solution {
+    public int findMinDifference(List<String> timePoints) {
+        int n = timePoints.size();
+        if(timePoints.size()>1440)
+        {
+            return 0;// where total 1440 minutes so if it exceeds then obviously it have the duplicate so answer is 0
+        }
+        int[] minutes = new int[n];
+        for (int i = 0; i < n; i++) {
+            String[] parts = timePoints.get(i).split(":");
+            minutes[i] = Integer.parseInt(parts[0]) * 60 + Integer.parseInt(parts[1]);
+        }
+        Arrays.sort(minutes);
+        int min = 1440;
+        for (int i = 1; i < n; i++) {
+            min = Math.min(min, minutes[i] - minutes[i - 1]);
+        }
+        // Wrap-around case(for 24 hours)
+        min = Math.min(min, 1440 - (minutes[n - 1] - minutes[0]));
+        return min;
+    }
+}
