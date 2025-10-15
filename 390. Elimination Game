@@ -1,0 +1,39 @@
+class Solution {
+    public int lastRemaining(int n) {
+        /*ArrayList<Integer> list=new ArrayList<>();
+        for(int i=1;i<=n;i++)
+        list.add(i);
+
+        while(list.size()>1)
+        {
+            for(int j=0;j<list.size();j++)
+            {
+                if(list.size()>1)
+                list.remove(j);
+            }
+            for(int k=list.size()-1;k>=0;k-=2)
+            {
+               if(list.size()>1)
+                list.remove(k);
+            }
+        }
+        return list.get(0);*/
+        int h=1;
+        boolean left=true;
+        int s=1;
+        int r=n;
+
+        while(r>1)
+        {
+            if(left || r%2==1)
+            {
+                h+=s;
+            }
+            r/=2;
+            s*=2;
+            left=!left;
+
+        }
+        return h;
+    }
+}
