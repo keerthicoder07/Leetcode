@@ -1,0 +1,23 @@
+class Solution {
+    public String getSmallestString(int n, int k) {
+        char[] s = new char[n];
+        int n1 = n;
+        int idx = n - 1;
+        while (idx >= 0) {
+            if (k - (n1 - 1) <= 26) {
+                int r = k - (n1 - 1);
+                char ch = (char)('a' + (r - 1)); // fix off-by-one
+                s[idx] = ch;
+                k -= r;
+                n1--;
+                idx--;
+            } else {
+                k -= 26;
+                s[idx] = 'z';
+                n1--;
+                idx--;
+            }
+        }
+        return new String(s);
+    }
+}
