@@ -1,0 +1,56 @@
+
+    /*public int maxRotateFunction(int[] nums) {
+        int n = nums.length;
+        long best = Long.MIN_VALUE;
+        long s = 0L;
+
+        // F(0)
+        for (int i = 0; i < n; i++) {
+            s += (long) i * (long) nums[i];
+        }
+        best = Math.max(best, s);
+
+        int[] cur = nums;
+        for (int j = 0; j < n - 1; j++) { // rotating n times brings you back to start; n-1 is enough
+            int[] dup = rotate(cur);      // O(n)
+            s = 0L;
+            for (int k = 0; k < n; k++) {
+                s += (long) k * (long) dup[k];
+            }
+            if (s > best) best = s;
+            cur = dup;
+        }
+        return (int) best; // problem guarantees it fits in 32-bit
+    }
+
+    static int[] rotate(int[] arr) { // right rotate by 1
+        int n = arr.length;
+        int[] dup = new int[n];
+        for (int i = 0; i < n; i++) {
+            dup[(i + 1) % n] = arr[i];
+        }
+        return dup;
+    }*/
+    class Solution {
+    public int maxRotateFunction(int[] nums) {
+        int n = nums.length;
+        long sum = 0L;   // S = sum(nums)
+        long f0  = 0L;   // F(0)
+
+        for (int i = 0; i < n; i++) {
+            sum += nums[i];
+            f0  += (long) i * (long) nums[i];
+        }
+
+        long best = f0;
+        long fk = f0;
+        // Recurrence: F(k) = F(k-1) + S - n * nums[n - k]
+        for (int k = 1; k < n; k++) {
+            fk = fk + sum - (long) n * (long) nums[n - k];
+            if (fk > best) best = fk;
+        }
+        return (int) best; // guaranteed by problem constraints
+    }
+}
+
+
