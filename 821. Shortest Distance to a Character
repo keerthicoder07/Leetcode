@@ -1,0 +1,59 @@
+class Solution {
+    public int[] shortestToChar(String s, char c) {
+        char[] str=s.toCharArray();
+        int[] arr=new int[str.length];
+        int co;
+        int ro;
+        for(int i=0;i<s.length();i++)
+        {
+            co=1;
+            ro=1;
+            int f=0;
+            int f1=0;
+            if(str[i]==c)
+            {
+            arr[i]=0;
+            continue;
+            }
+            int j=i-1;
+            int k=i+1;
+            while(j>=0)
+            {
+                if(str[j]!=c)
+                co++;
+                else
+                {
+                f=1;
+                break;
+                }
+                j--;
+            }
+            while(k<s.length())
+            {
+                if(str[k]!=c)
+                ro++;
+                else
+                {
+                f1=1;
+                break;
+                }
+                k++;
+            }
+ 
+            if(f==1 && f1==1)
+            arr[i]=Math.min(co,ro);
+            else
+            {
+                if(f==1)
+                {
+                    arr[i]=co;
+                }
+                else if(f1==1)
+                {
+                    arr[i]=ro;
+                }
+            }
+        }
+        return arr;
+    }
+}
