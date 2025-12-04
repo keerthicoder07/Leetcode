@@ -1,0 +1,70 @@
+class Solution {
+    public int findCircleNum(int[][] isConnected) {
+        int n=isConnected.length;
+        UnionFind u=new UnionFind(n);
+        for(int i=0;i<n;i++)
+        {
+            for(int j=i+1;j<n;j++)
+            {
+                if(isConnected[i][j]==1)
+                u.union(i,j);
+            }
+        }
+        return u.count();
+
+    }
+}
+
+    class UnionFind
+    {
+        int parent[];
+        int rank[];
+        int count;
+        UnionFind(int n)
+        {
+            parent=new int[n];
+            rank=new int[n];
+            count=n;
+
+        
+        for(int i=0;i<n;i++)
+        {
+            parent[i]=i;
+            rank[i]=0;
+        }
+        }
+        public  int find(int x)
+        {
+            if(parent[x]!=x)
+            parent[x]=find(parent[x]);
+            return parent[x];
+        }
+        public void union(int x,int y)
+        {
+            int ru=find(x);
+            int rv=find(y);
+                if(ru==rv)
+                {
+                    return;
+                }
+                if(rank[ru]<rank[rv])
+                {
+                    parent[ru]=rv;
+                }
+                else if(rank[rv]<rank[ru])
+                {
+                    parent[rv]=ru;
+                }
+                else
+                {
+                    parent[rv]=ru;
+                    rank[ru]++;
+                }
+                count--;
+        }
+        public int count()
+        {
+            return count;
+        }
+
+    }
