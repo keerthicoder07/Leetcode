@@ -1,0 +1,21 @@
+class Solution(object):
+    def check(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        res=sorted(nums)
+        if(nums==res):
+            return True
+        b=[]
+
+        n=len(nums)
+        b=[0]*n
+        for i in range(1,n):
+            for j in range(n):
+                b[j]=nums[(j+i)%n]
+            if(b==res):
+                return True
+        return False
+
+        
