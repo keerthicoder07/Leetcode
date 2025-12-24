@@ -1,0 +1,17 @@
+class Solution(object):
+    def minimumBoxes(self, apple, capacity):
+        """
+        :type apple: List[int]
+        :type capacity: List[int]
+        :rtype: int
+        """
+        capacity=sorted(capacity,reverse=True)
+        a=sum(apple)
+        c=0
+        for i in capacity:
+            if(a<=0):
+                break
+            a-=i
+            c+=1
+        return c
+        
