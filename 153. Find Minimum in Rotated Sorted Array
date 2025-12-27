@@ -1,0 +1,19 @@
+class Solution(object):
+    def findMin(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        mi=10000
+        n=len(nums)
+        nums1=copy.copy(nums)
+        for k in range(n):
+            k%=n
+            nums=copy.copy(nums1)
+            nums[:] = nums[::-1]
+            nums[:k] = nums[:k][::-1]
+            nums[k:] = nums[k:][::-1]
+            if(nums[0]<mi):
+                mi=nums[0]
+        return mi
+            
