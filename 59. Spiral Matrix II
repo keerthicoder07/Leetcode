@@ -1,0 +1,34 @@
+class Solution(object):
+    def generateMatrix(self, n):
+        """
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        l=0
+        r=n-1
+        t=0
+        b=n-1
+        c=1
+        res=[[0]*n for _ in range(n)]
+        while(l<=r and t<=b):
+            for i in range(l,r+1):
+                res[t][i]=c
+                c+=1
+            t+=1
+            for j in range(t,b+1):
+                res[j][r]=c
+                c+=1
+            r-=1
+            if(t<=b):
+                for k in range(r,l-1,-1):
+                    res[b][k]=c
+                    c+=1
+            b-=1
+            if(l<=r):
+                for li in range(b,t-1,-1):
+                    res[li][l]=c
+                    c+=1
+            l+=1
+        return res
+
+        
