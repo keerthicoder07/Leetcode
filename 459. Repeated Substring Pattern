@@ -1,0 +1,11 @@
+class Solution(object):
+    def repeatedSubstringPattern(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        n=s+s
+        r=n[1:len(n)-1]
+        if s in r:
+            return True
+        return False
