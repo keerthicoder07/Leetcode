@@ -1,0 +1,6 @@
+class Solution(object):
+    def toLowerCase(self, s):
+        for i in s:
+            c=(ord(i))
+            if(c<=90 and c>=65):
+                s=s.replace(i,chr(c+32))
