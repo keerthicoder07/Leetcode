@@ -1,0 +1,17 @@
+class Solution(object):
+    def judgeCircle(self, moves):
+        """
+        :type moves: str
+        :rtype: bool
+        """
+        d={'U':1,'D':-1,'L':-1,'R':1}
+        res=0
+        if ('U' in moves and 'D' not in moves) or ('D' in moves and 'U' not in  moves):
+            return False
+        if('L' in moves and 'R' not in moves) or ('R' in moves and 'L' not in moves):
+            return False
+        for i in moves:
+            res+=d[i]
+        if res==0:
+            return True
+        return False
