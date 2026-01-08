@@ -1,0 +1,13 @@
+class Solution(object):
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
+        d={}
+        for i in strs:
+            key="".join(sorted(i))
+            if key not in d.keys():
+                d[key]=[]
+            d[key].append(i)
+        return list(d.values())
