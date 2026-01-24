@@ -1,0 +1,16 @@
+class Solution(object):
+    def constructRectangle(self, area):
+        """
+        :type area: int
+        :rtype: List[int]
+        """
+        s1=math.sqrt(area)
+        s1=int(s1)
+        for i in range(s1,0,-1):
+            if area%i==0:
+                l=area//i
+                return [l,i]
+
+        
+
+        
