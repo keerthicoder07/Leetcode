@@ -1,0 +1,42 @@
+nums.sort()
+        n = len(nums)
+        res = []
+
+        for i in range(n - 3):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue   # skip duplicate i
+
+            l1 = i + 1
+            l2 = i + 2
+            r = n - 1
+
+            while l1 < n - 2:
+                while l2 < r:
+                    total = nums[i] + nums[l1] + nums[l2] + nums[r]
+
+                    if total == target:
+                        res.append([nums[i], nums[l1], nums[l2], nums[r]])
+
+                        # skip duplicates for l2 and r
+                        while l2 < r and nums[l2] == nums[l2 + 1]:
+                            l2 += 1
+                        while l2 < r and nums[r] == nums[r - 1]:
+                            r -= 1
+
+                        l2 += 1
+                        r -= 1
+
+                    elif total < target:
+                        l2 += 1
+                    else:
+                        r -= 1
+
+                l1 += 1
+                # skip duplicate l1
+                while l1 < n - 2 and nums[l1] == nums[l1 - 1]:
+                    l1 += 1
+
+                l2 = l1 + 1
+                r = n - 1
+
+        return res
