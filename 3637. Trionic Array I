@@ -1,0 +1,31 @@
+class Solution(object):
+    def isTrionic(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        c1=0
+        c2=0
+        c3=0
+        n=len(nums)
+        if(n<=3):
+            return False
+        i=0
+        while(i<n-1 and nums[i+1]>nums[i]):
+            i+=1
+            c1+=1
+        while(i<n-1 and nums[i+1]<nums[i]):
+            i+=1
+            c2+=1
+        while(i<n-1):
+            if(nums[i+1]>nums[i]):
+                i+=1
+                c3+=1
+            else:
+                c3=0
+                break
+        if(c1>0 and c2>0 and c3>0):
+            return True
+        return False
+
+        
