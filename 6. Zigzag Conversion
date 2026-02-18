@@ -1,0 +1,21 @@
+class Solution(object):
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        if numRows==1 or numRows>=len(s):
+            return s
+        rows=[""]*numRows
+        cr=0
+        d=False
+        for c in s:
+            rows[cr]+=c
+            if cr==0 or cr==numRows-1:
+                d= not d
+            
+            cr+=1 if d else -1
+        return "".join(rows)
+
+        
